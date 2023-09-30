@@ -1,11 +1,3 @@
-// schema for product
-
-// name: action.name,
-// price: action.price,
-// imageurl: action.,
-// description: action,
-// quantity: 0,
-
 const cartReducer = (state, action) => {
   var newCart = { ...state };
   const itemCode = action.itemCode;
