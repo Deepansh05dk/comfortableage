@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Button from "@/components/Button";
 
 const Product = () => {
   const route = useRouter();
@@ -64,9 +65,9 @@ const Product = () => {
                     stroke="currentColor"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                     />
                   </svg>
@@ -82,7 +83,7 @@ const Product = () => {
                 <span className="mb-0.5 inline-block text-gray-500">
                   Fancy Brand
                 </span>
-                <h2 className="text-2xl font-bold text-gray-800 lg:text-3xl">
+                <h2 className=" capitalize text-2xl font-bold text-gray-800 lg:text-3xl">
                   {slug}
                 </h2>
               </div>
@@ -196,9 +197,9 @@ const Product = () => {
                 >
                   <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
                   />
                 </svg>
@@ -209,19 +210,14 @@ const Product = () => {
 
         <!-- buttons - start --> */}
               <div className="flex gap-2.5">
-                <a
+                {/* <a
                   href="#"
                   className="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base"
                 >
-                  Add to cart
-                </a>
-
-                <a
-                  href="#"
-                  className="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base"
-                >
-                  Buy now
-                </a>
+                  
+                </a> */}
+                <Button text={"Add to cart"} />
+                <Button text={"Buy Now"} />
               </div>
               {/* <!-- buttons - end --> */}
             </div>

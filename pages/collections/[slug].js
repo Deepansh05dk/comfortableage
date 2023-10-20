@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Button from "@/components/Button";
 
 const slug = () => {
   const route = useRouter();
@@ -200,6 +201,7 @@ const slug = () => {
                 <span className="font-bold text-gray-600 lg:text-lg">
                   $49.99
                 </span>
+                <Button text={"Add to cart"} />
               </div>
             </div>
           </div>
@@ -233,6 +235,7 @@ const slug = () => {
                 <span className="font-bold text-gray-600 lg:text-lg">
                   $49.99
                 </span>
+                <Button text={"Add to cart"} />
               </div>
             </div>
           </div>
@@ -266,6 +269,7 @@ const slug = () => {
                 <span className="font-bold text-gray-600 lg:text-lg">
                   $49.99
                 </span>
+                <Button text={"Add to cart"} />
               </div>
             </div>
           </div>
@@ -299,6 +303,7 @@ const slug = () => {
                 <span className="font-bold text-gray-600 lg:text-lg">
                   $49.99
                 </span>
+                <Button text={"Add to cart"} />
               </div>
             </div>
           </div>

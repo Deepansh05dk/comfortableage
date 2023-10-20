@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import Sidecart from "@/components/Sidecart";
+import { Badge, Tooltip } from "antd";
 
 const Navbar = () => {
+  const [showSidecart, setshowSidecart] = useState(false);
+  const [logged, setlogged] = useState(false);
   return (
     <header className="bg-white">
-      <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-1 sm:px-2">
+      <Sidecart show={showSidecart} setshow={setshowSidecart} />
+      <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-2 sm:px-3">
         <a className="block text-teal-600" href="/">
           <span className="sr-only">Home</span>
           <svg
@@ -75,7 +80,7 @@ const Navbar = () => {
                   Blog
                 </a>
               </li> */}
-              <li className="w-[50vw]">
+              <li className="sm:w-[400px] lg:w-[650px]">
                 <div className="relative">
                   <input
                     type="text"
@@ -114,52 +119,57 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
-              <a
-                className=" block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
-                href="/"
-              >
-                Login
-              </a>
-
-              <a className=" p-2 flex " href="/">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                  className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+              {logged ? (
+                <a
+                  className=" block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
+                  href="/"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                  ></path>
-                </svg>
-                <span>deepansh</span>
-              </a>
+                  Login
+                </a>
+              ) : (
+                <a className=" p-2 flex " href="/">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                    ></path>
+                  </svg>
+                  <span className="capitalize">deepansh</span>
+                </a>
+              )}
             </div>
-            <a href="/" className="group -m-2 flex items-center p-2">
-              <svg
-                className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
-                />
-              </svg>
-              <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                0
-              </span>
-              <span className="sr-only">items in cart, view bag</span>
-            </a>
+            <Tooltip placement="bottom" title={"items in cart, view bag"}>
+              <Badge count={2}>
+                <button
+                  onClick={() => setshowSidecart(true)}
+                  className="group -m-2 flex items-center p-2"
+                >
+                  <svg
+                    className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                    />
+                  </svg>
+                </button>
+              </Badge>
+            </Tooltip>
 
             <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
               <span className="sr-only">Toggle menu</span>
