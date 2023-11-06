@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import Sidecart from "@/components/Sidecart";
 import { Badge, Tooltip } from "antd";
+import Link from "next/link";
 
 const Navbar = () => {
   const [showSidecart, setshowSidecart] = useState(false);
+  const [showsearch, setshowsearch] = useState(false);
   const [logged, setlogged] = useState(false);
   return (
     <header className="bg-white">
       <Sidecart show={showSidecart} setshow={setshowSidecart} />
-      <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-2 sm:px-3">
-        <a className="block text-teal-600" href="/">
+      <div className="mx-auto flex h-16 items-center gap-8 px-2 sm:px-3">
+        <Link className="block text-red-600" href="/">
           <span className="sr-only">Home</span>
           <svg
             className="h-8"
@@ -22,7 +24,7 @@ const Navbar = () => {
               fill="currentColor"
             />
           </svg>
-        </a>
+        </Link>
 
         <div className="flex flex-1 items-center justify-end md:justify-between">
           <nav className="hidden md:block ">
@@ -80,7 +82,7 @@ const Navbar = () => {
                   Blog
                 </a>
               </li> */}
-              <li className="sm:w-[400px] lg:w-[650px]">
+              {/* <li className="sm:w-[400px] lg:w-[650px]">
                 <div className="relative">
                   <input
                     type="text"
@@ -113,21 +115,37 @@ const Navbar = () => {
                     </button>
                   </span>
                 </div>
-              </li>
+              </li> */}
             </ul>
           </nav>
 
           <div className="flex items-center gap-4">
+            <button onClick={() => setshowsearch(!showsearch)}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                />
+              </svg>
+            </button>
             <div className="sm:flex sm:gap-4">
               {logged ? (
-                <a
+                <Link
                   className=" block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
                   href="/"
                 >
                   Login
-                </a>
+                </Link>
               ) : (
-                <a className=" p-2 flex " href="/">
+                <Link className=" p-2 flex " href="/">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -144,11 +162,12 @@ const Navbar = () => {
                     ></path>
                   </svg>
                   <span className="capitalize">deepansh</span>
-                </a>
+                </Link>
               )}
             </div>
-            <Tooltip placement="bottom" title={"items in cart, view bag"}>
-              <Badge count={2}>
+
+            <Badge count={2}>
+              <Tooltip placement="bottom" title={"items in cart, view bag"}>
                 <button
                   onClick={() => setshowSidecart(true)}
                   className="group -m-2 flex items-center p-2"
@@ -168,10 +187,10 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
-              </Badge>
-            </Tooltip>
+              </Tooltip>
+            </Badge>
 
-            <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
+            {/* <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
               <span className="sr-only">Toggle menu</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -187,10 +206,34 @@ const Navbar = () => {
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
+      {showsearch && (
+        <div className="flex items-center px-5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+          <input
+            type="text"
+            id="Search"
+            placeholder="Search for products ..."
+            className="w-full rounded-md flex-1 py-2.5 pe-10 shadow-sm sm:text-sm outline-none pl-3 "
+          />
+        </div>
+      )}
     </header>
   );
 };

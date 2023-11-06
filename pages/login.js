@@ -11,6 +11,7 @@ function isValidEmail(email) {
 const login = () => {
   const [show, setshow] = useState(true);
   const [email, setemail] = useState("");
+
   const handleEmail = (e) => {
     setemail(e.target.value);
   };
@@ -26,7 +27,7 @@ const login = () => {
               <div>
                 <input
                   name="email"
-                  className="w-full rounded border px-3 py-2 text-gray-800 outline-none ring-red-600 transition duration-100 focus:ring-1"
+                  className="w-full rounded border px-3 py-3 text-gray-800 outline-none ring-red-600 transition duration-100 focus:ring-1"
                   placeholder="Enter email"
                   value={email}
                   onChange={handleEmail}
@@ -48,7 +49,10 @@ const login = () => {
                 </span>
               </div>
 
-              <button className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base">
+              <button
+                onClick={() => setshow(!show)}
+                className="flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-gray-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base"
+              >
                 <svg
                   className="h-5 w-5 shrink-0"
                   width="24"
