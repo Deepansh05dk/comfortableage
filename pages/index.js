@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import { Carousel } from "antd";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,15 +19,12 @@ export default function Home() {
       <main>
         <div className="bg-red-600 px-4 py-3 text-white">
           <p className="text-center text-sm font-medium">
-            Love Alpine JS?
-            <a href="#" className="inline-block underline">
-              Check out this new course!
-            </a>
+            Get Flat 10% Off on your first order above 1100. Use code FLAT10
           </p>
         </div>
         <Carousel autoplay>
-          <section className="w-full h-[40vh] relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat"></section>
-          <section className="w-full h-[40vh] relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat"></section>
+          <section className="w-full h-[50vh] relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat"></section>
+          <section className="w-full h-[50vh] relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat"></section>
         </Carousel>
 
         <section>
@@ -41,7 +39,10 @@ export default function Home() {
 
             <ul className="grid grid-cols-1 gap-4 mt-8 sm:grid-cols-3">
               <li>
-                <a href="#" className="relative block group">
+                <Link
+                  href="./collections/fragrances"
+                  className="relative block group"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1618898909019-010e4e234c55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
                     alt=""
@@ -50,18 +51,21 @@ export default function Home() {
 
                   <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
                     <h3 className="text-xl font-medium text-white">
-                      Casual Trainers
+                      Fragrances
                     </h3>
 
                     <span className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
                       Shop Now
                     </span>
                   </div>
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a href="#" className="relative block group">
+                <Link
+                  href="./collections/skincare"
+                  className="relative block group"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1624623278313-a930126a11c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
                     alt=""
@@ -69,35 +73,37 @@ export default function Home() {
                   />
 
                   <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
-                    <h3 className="text-xl font-medium text-white">
-                      Winter Jumpers
-                    </h3>
+                    <h3 className="text-xl font-medium text-white">Skincare</h3>
 
                     <span className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
                       Shop Now
                     </span>
                   </div>
-                </a>
+                </Link>
               </li>
 
               <li className="sm:col-span-2 sm:col-start-2 sm:row-span-2 sm:row-start-1">
-                <a href="#" className="relative block group">
+                <Link
+                  href="./collections/home-decoration"
+                  className="relative block group"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1593795899768-947c4929449d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80"
+                    a
                     alt=""
                     className="object-cover w-full transition duration-500 aspect-square group-hover:opacity-90"
                   />
 
                   <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
                     <h3 className="text-xl font-medium text-white">
-                      Skinny Jeans Blue
+                      Home Decoration
                     </h3>
 
                     <span className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
                       Shop Now
                     </span>
                   </div>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

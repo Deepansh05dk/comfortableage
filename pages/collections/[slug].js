@@ -1,10 +1,27 @@
 import React from "react";
 import { useRouter } from "next/router";
 import Button from "@/components/Button";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { ADDTOCART } from "@/GlobalRedux/Features/CartSlice";
 
-const slug = () => {
+const Products = ({ menuItems }) => {
   const route = useRouter();
+  const dispatch = useDispatch();
   const { slug } = route.query;
+  const AddToCart = (Product) => {
+    dispatch(
+      ADDTOCART({
+        title: Product.title,
+        price: Product.price,
+        thumbnail: Product.thumbnail,
+        itemCode: Product._id,
+        brand: Product.brand,
+        allowedqty: Product.allowedqty,
+        quantity: 1,
+      })
+    );
+  };
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
@@ -20,297 +37,63 @@ const slug = () => {
         </div>
         {/* <!-- text - end --> */}
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {/* <!-- product - start --> */}
-          <div>
-            <a
-              href="#"
-              className="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                loading="lazy"
-                alt="Photo by Austin Wade"
-                className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-              />
-
-              <span className="absolute left-0 top-3 rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">
-                -50%
-              </span>
-            </a>
-
-            <div className="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
-              <div className="flex flex-col">
-                <a
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 ">
+          {menuItems.map((menuitem) => {
+            return (
+              <div>
+                <Link
                   href="#"
-                  className="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg"
+                  className="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100"
                 >
-                  Fancy Outfit
-                </a>
-                <span className="text-sm text-gray-500 lg:text-base">
-                  by Fancy Brand
-                </span>
+                  <img
+                    src={menuitem.thumbnail}
+                    loading="lazy"
+                    alt="Photo by Vladimir Fedotov"
+                    className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                  />
+                </Link>
+
+                <div className="flex flex-col items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
+                  <div className="flex flex-row justify-between w-full">
+                    <span className="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg">
+                      {menuitem.title}
+                    </span>
+                    <span className="font-bold text-gray-600 lg:text-lg">
+                      ₹{menuitem.price}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-row justify-between w-full">
+                    <span className="text-sm text-gray-500 lg:text-base">
+                      by {menuitem.brand}
+                    </span>
+
+                    <button
+                      onClick={() => AddToCart(menuitem)}
+                      className="mt-2"
+                    >
+                      <Button text={"Add to cart"} />
+                    </button>
+                  </div>
+                </div>
               </div>
-
-              <div className="flex flex-col items-end">
-                <span className="font-bold text-gray-600 lg:text-lg">
-                  $19.99
-                </span>
-                <span className="text-sm text-red-500 line-through">
-                  $39.99
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* <!-- product - end -->
-
-      <!-- product - start --> */}
-          <div>
-            <a
-              href="#"
-              className="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1523359346063-d879354c0ea5?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                loading="lazy"
-                alt="Photo by Nick Karvounis"
-                className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-              />
-            </a>
-
-            <div className="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
-              <div className="flex flex-col">
-                <a
-                  href="#"
-                  className="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg"
-                >
-                  Cool Outfit
-                </a>
-                <span className="text-sm text-gray-500 lg:text-base">
-                  by Cool Brand
-                </span>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <span className="font-bold text-gray-600 lg:text-lg">
-                  $29.99
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* <!-- product - end -->
-
-      <!-- product - start --> */}
-          <div>
-            <a
-              href="#"
-              className="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1548286978-f218023f8d18?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                loading="lazy"
-                alt="Photo by Austin Wade"
-                className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-              />
-            </a>
-
-            <div className="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
-              <div className="flex flex-col">
-                <a
-                  href="#"
-                  className="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg"
-                >
-                  Nice Outfit
-                </a>
-                <span className="text-sm text-gray-500 lg:text-base">
-                  by Nice Brand
-                </span>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <span className="font-bold text-gray-600 lg:text-lg">
-                  $35.00
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* <!-- product - end -->
-
-      <!-- product - start --> */}
-          <div>
-            <a
-              href="#"
-              className="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1566207274740-0f8cf6b7d5a5?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                loading="lazy"
-                alt="Photo by Vladimir Fedotov"
-                className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-              />
-            </a>
-
-            <div className="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
-              <div className="flex flex-col">
-                <a
-                  href="#"
-                  className="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg"
-                >
-                  Lavish Outfit
-                </a>
-                <span className="text-sm text-gray-500 lg:text-base">
-                  by Lavish Brand
-                </span>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <span className="font-bold text-gray-600 lg:text-lg">
-                  $49.99
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* <!-- product - end --> */}
-          <div>
-            <a
-              href="#"
-              className="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1566207274740-0f8cf6b7d5a5?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                loading="lazy"
-                alt="Photo by Vladimir Fedotov"
-                className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-              />
-            </a>
-
-            <div className="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
-              <div className="flex flex-col">
-                <a
-                  href="#"
-                  className="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg"
-                >
-                  Lavish Outfit
-                </a>
-                <span className="text-sm text-gray-500 lg:text-base">
-                  by Lavish Brand
-                </span>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <span className="font-bold text-gray-600 lg:text-lg">
-                  $49.99
-                </span>
-                <Button text={"Add to cart"} />
-              </div>
-            </div>
-          </div>
-          <div>
-            <a
-              href="#"
-              className="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1566207274740-0f8cf6b7d5a5?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                loading="lazy"
-                alt="Photo by Vladimir Fedotov"
-                className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-              />
-            </a>
-
-            <div className="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
-              <div className="flex flex-col">
-                <a
-                  href="#"
-                  className="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg"
-                >
-                  Lavish Outfit
-                </a>
-                <span className="text-sm text-gray-500 lg:text-base">
-                  by Lavish Brand
-                </span>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <span className="font-bold text-gray-600 lg:text-lg">
-                  $49.99
-                </span>
-                <Button text={"Add to cart"} />
-              </div>
-            </div>
-          </div>
-          <div>
-            <a
-              href="#"
-              className="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1566207274740-0f8cf6b7d5a5?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                loading="lazy"
-                alt="Photo by Vladimir Fedotov"
-                className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-              />
-            </a>
-
-            <div className="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
-              <div className="flex flex-col">
-                <a
-                  href="#"
-                  className="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg"
-                >
-                  Lavish Outfit
-                </a>
-                <span className="text-sm text-gray-500 lg:text-base">
-                  by Lavish Brand
-                </span>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <span className="font-bold text-gray-600 lg:text-lg">
-                  $49.99
-                </span>
-                <Button text={"Add to cart"} />
-              </div>
-            </div>
-          </div>
-          <div>
-            <a
-              href="#"
-              className="group relative block h-96 overflow-hidden rounded-t-lg bg-gray-100"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1566207274740-0f8cf6b7d5a5?auto=format&q=75&fit=crop&crop=top&w=600&h=700"
-                loading="lazy"
-                alt="Photo by Vladimir Fedotov"
-                className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-              />
-            </a>
-
-            <div className="flex items-start justify-between gap-2 rounded-b-lg bg-gray-100 p-4">
-              <div className="flex flex-col">
-                <a
-                  href="#"
-                  className="font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-lg"
-                >
-                  Lavish Outfit
-                </a>
-                <span className="text-sm text-gray-500 lg:text-base">
-                  by Lavish Brand
-                </span>
-              </div>
-
-              <div className="flex flex-col items-end">
-                <span className="font-bold text-gray-600 lg:text-lg">
-                  $49.99
-                </span>
-                <Button text={"Add to cart"} />
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </div>
   );
 };
 
-export default slug;
+export default Products;
+export async function getServerSideProps({ params }) {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/products/${params.slug}`
+    );
+    const data = await response.json();
+    return {
+      props: { menuItems: data },
+    };
+  } catch (error) {}
+}

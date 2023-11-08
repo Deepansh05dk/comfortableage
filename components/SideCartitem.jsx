@@ -1,29 +1,30 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { CHANGECART, REMOVECART } from "@/GlobalRedux/Features/CartSlice";
+import Link from "next/link";
 
-const Cartitem = ({ itemCode }) => {
-  const value = useSelector((state) => state.cart[itemCode]);
+const Cartitem = ({ itemCode, value }) => {
   const dispatch = useDispatch();
   return (
     <li className="flex py-6">
       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-        <img
-          src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg"
-          alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
-          className="h-full w-full object-cover object-center"
-        />
+        <Link href="#">
+          <img
+            src={value.thumbnail}
+            alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+            className="h-full w-full object-cover object-center"
+          />
+        </Link>
       </div>
 
       <div className="ml-4 flex flex-1 flex-col">
         <div>
           <div className="flex justify-between text-base font-medium text-gray-900">
-            <h3>
-              <a href="#">{value.name}</a>
-            </h3>
+            <p>
+              <a href="#">{value.title}</a>
+            </p>
             <p className="ml-4">₹{value.price}</p>
           </div>
-          <p className="mt-1 text-sm text-gray-500">Salmon</p>
+          <p className="mt-1 text-sm text-gray-500">{value.brand}</p>
         </div>
         <div className="flex flex-1 items-end justify-between text-sm">
           <div>

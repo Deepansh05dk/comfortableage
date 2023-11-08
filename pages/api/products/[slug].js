@@ -1,4 +1,5 @@
 import clientPromise from "@/lib/mongodb";
+import { ObjectId } from "mongodb";
 
 export default async function handler(req, res) {
   try {
@@ -13,6 +14,9 @@ export default async function handler(req, res) {
         .collection("Product")
         .find({ category: slug })
         .toArray();
+      if (products.length === 0) {
+        return res.status(404).json({ message: "No product found" });
+      }
       res.status(200).json(products);
     } else {
       res.status(405).end(); // Method not allowed

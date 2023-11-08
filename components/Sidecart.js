@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import Buttonoutlined from "./Buttonoutlined";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import Cartitem from "./SideCartitem";
-import { CLEARCART } from "@/GlobalRedux/Features/CartSlice";
+import {
+  ADDTOCART,
+  CLEARCART,
+  UPDATECART,
+} from "@/GlobalRedux/Features/CartSlice";
 
 const Sidecart = ({ show, setshow }) => {
+  // const [sidecart, setSidecart] = useState(null);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (typeof localStorage !== "undefined") {
+  //     if (localStorage.getItem("cart")) {
+  //       setSidecart(JSON.parse(localStorage.getItem("cart")));
+  //       dispatch(ADDTOCART(JSON.parse(localStorage.getItem("cart"))));
+  //     }
+  //   }
+  // }, []);
   return (
     <div>
       <div
@@ -50,48 +63,48 @@ const Sidecart = ({ show, setshow }) => {
           <div className="mt-8">
             <div className="flow-root">
               <ul role="list" className="-my-6 divide-y divide-gray-200">
-                {Object.keys(cart).map((key) => {
-                  return <Cartitem id={key} itemCode={key}></Cartitem>;
+                {Object.keys(cart).map((key, index) => {
+                  return (
+                    <Cartitem
+                      id={index}
+                      itemCode={key}
+                      value={cart[key]}
+                    ></Cartitem>
+                  );
                 })}
-                {/* <!-- More products... --> */}
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-          <div className="flex justify-between text-base font-medium text-gray-900">
+        <div className=" border-t border-gray-200 px-4 py-6 sm:px-6">
+          <div className="text-lg flex justify-between  font-medium text-gray-900">
             <p>Subtotal</p>
-            <p>$262.00</p>
+            <p className=" font-bold">
+              {" "}
+              ₹
+              {Object.values(cart).reduce(
+                (accumulator, currentValue) =>
+                  accumulator + currentValue.quantity * currentValue.price,
+                0
+              )}
+            </p>
           </div>
           <p className="mt-0.5 text-sm text-gray-500">
-            Shipping and taxes calculated at checkout.
+            Shipping and discount calculated at checkout.
           </p>
 
-          <button className="w-full mt-6">
+          <Link href="/checkout/details" className="block w-full mt-10">
             <Button text={"Checkout"} />
-          </button>
+          </Link>
           <button
             onClick={() => {
               dispatch(CLEARCART());
             }}
-            className="w-full mt-6"
+            className="block w-full mt-6"
           >
             <Buttonoutlined text={"Clear"} />
           </button>
-
-          <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-            <p>
-              or
-              <button
-                type="button"
-                className=" ml-2 font-medium text-red-600 hover:text-red-500"
-              >
-                Continue Shopping
-                <span aria-hidden="true"> &rarr;</span>
-              </button>
-            </p>
-          </div>
         </div>
       </div>
     </div>

@@ -11,31 +11,55 @@ export default async function handler(req, res) {
       res.status(200).json({ products });
     } else if (req.method === "POST") {
       // Handle POST request to insert a new product
-      const { name, price, imageUrl, description, category, quantity } =
-        req.body;
+      const products = req.body;
+      products.forEach(async (product) => {
+        const {
+          title,
+          description,
+          price,
+          discountPercentage,
+          rating,
+          stock,
+          brand,
+          category,
+          allowedqty,
+          thumbnail,
+          images,
+        } = product;
 
-      if (
-        !name ||
-        !price ||
-        !imageUrl ||
-        !description ||
-        !category ||
-        !quantity
-      ) {
-        // Check if all required fields are provided
-        return res.status(400).json({ error: "All fields are required" });
-      }
+        if (
+          !title ||
+          !description ||
+          !price ||
+          !discountPercentage ||
+          !rating ||
+          !stock ||
+          !brand ||
+          !category ||
+          !allowedqty ||
+          !thumbnail ||
+          !images
+        ) {
+          // Check if all required fields are provided
+          return res.status(400).json({ error: "All fields are required" });
+        }
 
-      const newProduct = {
-        name,
-        price,
-        imageUrl,
-        description,
-        category,
-        quantity,
-      };
+        const newProduct = {
+          title,
+          description,
+          price,
+          discountPercentage,
+          rating,
+          stock,
+          brand,
+          category,
+          allowedqty,
+          thumbnail,
+          images,
+        };
 
-      await db.collection("Product").insertOne(newProduct);
+        await db.collection("Product").insertOne(newProduct);
+      });
       res.status(200).json({ success: true });
     } else {
       res.status(405).end(); // Method not allowed

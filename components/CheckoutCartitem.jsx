@@ -1,23 +1,24 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CHANGECART, REMOVECART } from "@/GlobalRedux/Features/CartSlice";
+import Link from "next/link";
 
 const CheckoutCartitem = ({ itemCode }) => {
   const value = useSelector((state) => state.cart[itemCode]);
   const dispatch = useDispatch();
   return (
     <div className="flex flex-wrap gap-x-4 overflow-hidden rounded-lg border sm:gap-y-4 lg:gap-6">
-      <a
+      <Link
         href="#"
         className="group relative block h-40 w-32 overflow-hidden bg-gray-100 sm:h-40 sm:w-40"
       >
         <img
-          src="https://images.unsplash.com/photo-1612681621979-fffe5920dbe8?auto=format&q=75&fit=crop&w=200"
+          src={value.thumbnail}
           loading="lazy"
           alt="Photo by Thái An"
           className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
         />
-      </a>
+      </Link>
 
       <div className="flex flex-1 flex-col justify-center  py-4">
         <div>
@@ -25,11 +26,10 @@ const CheckoutCartitem = ({ itemCode }) => {
             href="#"
             className="mb-1 inline-block text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl"
           >
-            {value.name}
+            {value.title}
           </a>
 
-          <span className="block text-gray-500">Size: S</span>
-          <span className="block text-gray-500">Color: White</span>
+          <span className="block text-gray-500">{value.brand}</span>
         </div>
       </div>
 

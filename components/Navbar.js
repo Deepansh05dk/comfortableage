@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidecart from "@/components/Sidecart";
 import { Badge, Tooltip } from "antd";
 import Link from "next/link";

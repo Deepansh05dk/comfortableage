@@ -1,12 +1,11 @@
 import React from "react";
 import Button from "@/components/Button";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CheckoutCartitem from "@/components/CheckoutCartitem";
 
 const Details = () => {
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 md:px-8 py-8">
@@ -92,9 +91,12 @@ const Details = () => {
           <div className="flex space-x-4 flex-col md:flex-row">
             <div className="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
               {/* <!-- product - start --> */}
-              {Object.keys(cart).map((key) => {
+              {Object.keys(cart).map((key, index) => {
                 return (
-                  <CheckoutCartitem id={key} itemCode={key}></CheckoutCartitem>
+                  <CheckoutCartitem
+                    id={index}
+                    itemCode={key}
+                  ></CheckoutCartitem>
                 );
               })}
             </div>
@@ -116,16 +118,24 @@ const Details = () => {
                   <div className="space-y-1">
                     <div className="flex justify-between gap-4 text-gray-500">
                       <span>Subtotal</span>
-                      <span>$129.99</span>
+                      <span>
+                        ₹
+                        {Object.values(cart).reduce(
+                          (accumulator, currentValue) =>
+                            accumulator +
+                            currentValue.quantity * currentValue.price,
+                          0
+                        )}
+                      </span>
                     </div>
                     <div className="flex justify-between gap-4 text-green-400">
                       <span>Discount</span>
-                      <span>− $4.99</span>
+                      <span>− ₹0</span>
                     </div>
 
                     <div className="flex justify-between gap-4 text-gray-500">
                       <span>Shipping</span>
-                      <span>$4.99</span>
+                      <span>₹0</span>
                     </div>
                   </div>
 
@@ -134,9 +144,17 @@ const Details = () => {
                       <span className="text-lg font-bold">Total</span>
 
                       <span className="flex flex-col items-end">
-                        <span className="text-lg font-bold">$134.98 USD</span>
+                        <span className="text-lg font-bold">
+                          ₹
+                          {Object.values(cart).reduce(
+                            (accumulator, currentValue) =>
+                              accumulator +
+                              currentValue.quantity * currentValue.price,
+                            0
+                          )}
+                        </span>
                         <span className="text-sm text-gray-500">
-                          including VAT
+                          including GST
                         </span>
                       </span>
                     </div>
