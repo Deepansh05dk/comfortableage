@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import Sidecart from "@/components/Sidecart";
 import { Badge, Tooltip } from "antd";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [showSidecart, setshowSidecart] = useState(false);
   const [showsearch, setshowsearch] = useState(false);
   const [logged, setlogged] = useState(false);
+  const cart = useSelector((state) => state.cart);
   return (
     <header className="bg-white">
       <Sidecart show={showSidecart} setshow={setshowSidecart} />
@@ -166,7 +168,7 @@ const Navbar = () => {
               )}
             </div>
 
-            <Badge count={2}>
+            <Badge count={Object.keys(cart).length}>
               <Tooltip placement="bottom" title={"items in cart, view bag"}>
                 <button
                   onClick={() => setshowSidecart(true)}

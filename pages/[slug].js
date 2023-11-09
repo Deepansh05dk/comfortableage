@@ -2,6 +2,8 @@ import React from "react";
 import { useRouter } from "next/router";
 import Button from "@/components/Button";
 
+import Link from "next/link";
+
 const Product = () => {
   const route = useRouter();
   const { slug } = route.query;
@@ -53,7 +55,7 @@ const Product = () => {
                   sale
                 </span>
 
-                <a
+                <Link
                   href="#"
                   className="absolute right-4 top-4 inline-block rounded-lg border bg-white px-3.5 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:text-gray-700 md:text-base"
                 >
@@ -71,7 +73,7 @@ const Product = () => {
                       d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                     />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
             {/* <!-- images - end -->

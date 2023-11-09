@@ -23,7 +23,8 @@ export default function Home() {
           </p>
         </div>
         <Carousel autoplay>
-          <section className="w-full h-[50vh] relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat"></section>
+          <section className="w-full h-[50vh] relative bg-[url(https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG9tZSUyMGRlY29yfGVufDB8fDB8fHww)] bg-cover bg-center bg-no-repeat"></section>
+          <section className="w-full h-[50vh] relative bg-[url(https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZSUyMGRlY29yfGVufDB8fDB8fHww)] bg-cover bg-center bg-no-repeat"></section>
           <section className="w-full h-[50vh] relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat"></section>
         </Carousel>
 
@@ -44,8 +45,8 @@ export default function Home() {
                   className="relative block group"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1618898909019-010e4e234c55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-                    alt=""
+                    src="./fragnances.jpg"
+                    alt="Fragrances"
                     className="object-cover w-full transition duration-500 aspect-square group-hover:opacity-90"
                   />
 
@@ -67,8 +68,8 @@ export default function Home() {
                   className="relative block group"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1624623278313-a930126a11c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-                    alt=""
+                    src="./skincare.jpg"
+                    alt="skincare"
                     className="object-cover w-full transition duration-500 aspect-square group-hover:opacity-90"
                   />
 
@@ -88,9 +89,9 @@ export default function Home() {
                   className="relative block group"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1593795899768-947c4929449d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2672&q=80"
+                    src="./homedecor.jpg"
                     a
-                    alt=""
+                    alt=" Home Decoration"
                     className="object-cover w-full transition duration-500 aspect-square group-hover:opacity-90"
                   />
 

@@ -3,6 +3,7 @@ import Button from "@/components/Button";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import CheckoutCartitem from "@/components/CheckoutCartitem";
+import Emptycart from "@/components/Emptycart";
 
 const Details = () => {
   const cart = useSelector((state) => state.cart);
@@ -89,16 +90,20 @@ const Details = () => {
           </div>
 
           <div className="flex space-x-4 flex-col md:flex-row">
-            <div className="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
+            <div className="mb-6 flex-1 flex flex-col gap-4 sm:mb-8 md:gap-6">
               {/* <!-- product - start --> */}
-              {Object.keys(cart).map((key, index) => {
-                return (
-                  <CheckoutCartitem
-                    id={index}
-                    itemCode={key}
-                  ></CheckoutCartitem>
-                );
-              })}
+              {Object.keys(cart).length === 0 ? (
+                <Emptycart />
+              ) : (
+                Object.keys(cart).map((key, index) => {
+                  return (
+                    <CheckoutCartitem
+                      id={index}
+                      itemCode={key}
+                    ></CheckoutCartitem>
+                  );
+                })
+              )}
             </div>
 
             {/* <!-- totals - start --> */}
